@@ -5,5 +5,6 @@ data class CreatePromptResponse(
 )
 
 data class GeneratedText(
-    val generatedText: String
+    val generatedText: String,
+    val title: String
 )

@@ -36,7 +36,7 @@ class MusicService(
             FeignCreateMusicRequest(
                 prompt = promptResponse.generatedText.generatedText,
                 tags = keywords,
-                title = title
+                title = promptResponse.generatedText.title
             )
         }
         val response = musicClient.createMusic(feignRequest)
