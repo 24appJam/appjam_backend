@@ -5,6 +5,8 @@ import com.appjam.appjamserver.domain.music.presentation.dto.request.CreateMusic
 import com.appjam.appjamserver.domain.music.presentation.dto.response.GetMusicResponse
 import com.appjam.appjamserver.domain.music.repository.MusicRepository
 import com.appjam.appjamserver.global.feign.MusicClient
+import com.appjam.appjamserver.global.feign.PromptClient
+import com.appjam.appjamserver.global.feign.dto.request.CreatePromptRequest
 import com.appjam.appjamserver.global.feign.dto.request.FeignCreateMusicRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -13,17 +15,30 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class MusicService(
     private val musicClient: MusicClient,
-    private val musicRepository: MusicRepository
+    private val musicRepository: MusicRepository,
+    private val promptClient: PromptClient
 ) {
     fun createMusic(createMusicRequest: CreateMusicRequest) {
+
+
+        val promptResponse = promptClient.createPrompt(
+            CreatePromptRequest(
+                keyword = createMusicRequest.keywords,
+                content = createMusicRequest.prompt,
+                mood = createMusicRequest.atmosphere,
+                additional = createMusicRequest.additionalRequirements
+            )
+        )
+
+        println(promptResponse.generatedText.generatedText)
+
         val feignRequest = createMusicRequest.run {
             FeignCreateMusicRequest(
-                prompt = prompt,
-                tags = "$keywords $atmosphere",
+                prompt = promptResponse.generatedText.generatedText,
+                tags = keywords,
                 title = title
             )
         }
-
         val response = musicClient.createMusic(feignRequest)
 
         response.map {
