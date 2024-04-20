@@ -50,7 +50,8 @@ class MusicService(
                 audioId = it.id,
                 audioUrl = it.audioUrl,
                 videoUrl = it.videoUrl,
-                imageUrl = it.imageUrl
+                imageUrl = it.imageUrl,
+                title = promptResponse.generatedText.title
             )
 
             musicRepository.save(music)
@@ -68,7 +69,8 @@ class MusicService(
                 imageUrl = it.imageUrl,
                 musicId = it.id!!,
                 videoUrl = videoUrl,
-                status = status
+                status = status,
+                title = it.title
             )
         }.toList()
 

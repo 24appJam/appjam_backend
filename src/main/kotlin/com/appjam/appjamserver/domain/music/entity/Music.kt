@@ -18,7 +18,8 @@ class Music(
     audioId: String,
     audioUrl: String?,
     videoUrl: String?,
-    imageUrl: String?
+    imageUrl: String?,
+    title: String
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,5 +49,8 @@ class Music(
         protected set
 
     var imageUrl: String? = imageUrl
+        protected set
+
+    var title: String = title
         protected set
 }
