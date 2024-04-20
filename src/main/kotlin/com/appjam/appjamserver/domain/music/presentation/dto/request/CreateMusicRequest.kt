@@ -4,6 +4,5 @@ data class CreateMusicRequest(
     val prompt: String,
     val atmosphere: String,
     val keywords: String,
-    val additionalRequirements: String,
-    val title: String
+    val additionalRequirements: String
 )

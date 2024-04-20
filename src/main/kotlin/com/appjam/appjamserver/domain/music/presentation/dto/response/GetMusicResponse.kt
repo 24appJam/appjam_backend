@@ -4,5 +4,6 @@ data class GetMusicResponse(
     val imageUrl: String?,
     val musicId: Long,
     val videoUrl: String?,
-    val status: String
+    val status: String,
+    val title: String
 )
