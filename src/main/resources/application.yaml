@@ -1,1 +1,16 @@
-spring.application.name=appjam-server
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    properties:
+      hibernate:
+        show_sql: true
+    deserialization:
+      accept-empty-string-as-null-object: true
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}

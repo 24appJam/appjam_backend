@@ -1,0 +1,7 @@
+config:
+  name: appjam-singtory
+  prefix: "/singtory-api"
+  service_type: be
+  domain:
+    prod: singtory-api.xquare.app
+    stag: singtory-api-stag.xquare.app
