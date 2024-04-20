@@ -5,3 +5,4 @@ config:
   domain:
     prod: singtory-api.xquare.app
     stag: singtory-api-stag.xquare.app
+  port: 8080
